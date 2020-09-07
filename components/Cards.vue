@@ -1,11 +1,12 @@
 <template>
   <section class="cards">
-    <Card :title="'Название 1'" />
-    <Card :title="'Название 2'" />
-    <Card :title="'Название 3'" />
-    <Card :title="'Название 4'" />
-    <Card :title="'Название 5'" />
-    <Card :title="'Название 6'" />
+    <Card
+      v-for="card in cards"
+      :key="card.id"
+      :title="card.name"
+      :likes="card.likes.length"
+      :url="card.link"
+    />
   </section>
 </template>
 
@@ -17,6 +18,22 @@ export default {
   components: {
     Container,
     Card,
+  },
+
+  computed: {
+    cards() {
+      return this.$store.getters['cards/getCards'];
+    },
+  },
+
+  async fetch() {
+    await this.$store.dispatch('cards/fetchCards');
+  },
+
+  methods: {
+    refreshCards() {
+      this.$fetch();
+    },
   },
 };
 </script>
