@@ -1,25 +1,23 @@
 <template>
   <section class="profile">
-    <Container class="profile__container">
-      <div class="profile__avatar">
-        <img
-          src="@/assets/images/avatar.jpg"
-          alt="User avatar"
-          class="profile__img"
-        />
-        <div class="profile__img-overlay"></div>
-      </div>
+    <div class="profile__avatar">
+      <img
+        src="@/assets/images/avatar.jpg"
+        alt="User avatar"
+        class="profile__img"
+      />
+      <div class="profile__img-overlay"></div>
+    </div>
 
-      <div class="profile__user">
-        <h1 class="profile__name">Jacques Cousteau</h1>
-        <h2 class="profile__about">Sailor, researcher</h2>
-        <Button class="profile__button profile__button_type_edit"
-          >Редактировать профиль</Button
-        >
-      </div>
+    <div class="profile__user">
+      <h1 class="profile__name">Jacques Cousteau</h1>
+      <h2 class="profile__about">Sailor, researcher</h2>
+      <Button class="profile__button profile__button_type_edit"
+        >Редактировать профиль</Button
+      >
+    </div>
 
-      <Button class="profile__button profile__button_type_add"></Button>
-    </Container>
+    <Button class="profile__button profile__button_type_add"></Button>
   </section>
 </template>
 
@@ -36,7 +34,7 @@ export default {
 </script>
 
 <style scoped>
-.profile__container {
+.profile {
   padding-top: 70px;
   padding-bottom: 50px;
   display: flex;
