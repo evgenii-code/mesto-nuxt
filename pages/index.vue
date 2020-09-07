@@ -1,7 +1,7 @@
 <template>
   <main class="main">
-    <Profile class="main__profile" />
     <Container class="main__container">
+      <Profile class="main__profile" />
       <Cards class="main__cards" />
     </Container>
   </main>
