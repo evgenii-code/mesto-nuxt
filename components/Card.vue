@@ -3,11 +3,7 @@
     <button class="card__delete"></button>
 
     <div class="card__picture">
-      <img
-        src="@/assets/images/mesto-image.jpg"
-        alt="Picture of nice place"
-        class="card__image"
-      />
+      <img :src="url" alt="Picture of nice place" class="card__image" />
     </div>
     <div class="card__description">
       <div class="card__title">{{ title }}</div>
@@ -33,6 +29,9 @@ export default {
       type: Number,
       default: 0,
       require: true,
+    },
+    url: {
+      type: String,
     },
   },
 };
