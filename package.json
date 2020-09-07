@@ -1,0 +1,38 @@
+{
+  "name": "mesto-nuxt",
+  "version": "1.0.0",
+  "private": true,
+  "author": {
+    "name": "Osipenkov Evgenii",
+    "email": "osipenkov.evgenii@gmail.com",
+    "url": "https://github.com/evgenii-code"
+  },
+  "keywords": [
+    "vue",
+    "nuxt",
+    "ssr"
+  ],
+  "description": "Simple instagram-like app",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.12.0",
+    "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "nuxt": "^2.14.0"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.2.5",
+    "prettier": "^2.0.5"
+  },
+  "husky": {
+    "hooks" : {
+      "pre-commit" : "prettier --write './**/*.{js,vue}' && git add ."
+    }
+  }
+}
