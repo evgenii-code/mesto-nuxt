@@ -1,8 +1,19 @@
 <template>
-  <div>
+  <div class="default">
+    <Header />
     <Nuxt />
   </div>
 </template>
+
+<script>
+import Header from '@/components/Header';
+
+export default {
+  components: {
+    Header,
+  },
+};
+</script>
 
 <style>
 html {
@@ -22,5 +33,11 @@ html {
 *::after {
   box-sizing: border-box;
   margin: 0;
+}
+
+.default {
+  background-color: #000000;
+  position: relative;
+  min-height: 100vh;
 }
 </style>
