@@ -12,12 +12,17 @@
     <div class="profile__user">
       <h1 class="profile__name">Jacques Cousteau</h1>
       <h2 class="profile__about">Sailor, researcher</h2>
-      <Button class="profile__button profile__button_type_edit"
+      <Button
+        class="profile__button profile__button_type_edit"
+        @btn-click="togglePopup"
         >Редактировать профиль</Button
       >
     </div>
 
-    <Button class="profile__button profile__button_type_add"></Button>
+    <Button
+      class="profile__button profile__button_type_add"
+      @btn-click="togglePopup"
+    ></Button>
   </section>
 </template>
 
@@ -29,6 +34,12 @@ export default {
   components: {
     Container,
     Button,
+  },
+
+  methods: {
+    togglePopup() {
+      return this.$store.commit('popup/togglePopup');
+    },
   },
 };
 </script>

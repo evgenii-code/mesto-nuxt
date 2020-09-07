@@ -2,15 +2,27 @@
   <div class="default">
     <Header />
     <Nuxt />
+    <Overlay v-if="popupState" />
+    <Popup v-if="popupState" />
   </div>
 </template>
 
 <script>
+import Overlay from '@/components/ui/Overlay';
+import Popup from '@/components/Popup';
 import Header from '@/components/Header';
 
 export default {
   components: {
+    Overlay,
+    Popup,
     Header,
+  },
+
+  computed: {
+    popupState() {
+      return this.$store.getters['popup/getPopupState'];
+    },
   },
 };
 </script>
@@ -39,5 +51,6 @@ html {
   background-color: #000000;
   position: relative;
   min-height: 100vh;
+  position: relative;
 }
 </style>
