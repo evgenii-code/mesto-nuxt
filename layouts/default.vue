@@ -8,9 +8,13 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import global from '@/mixins/global';
 import Overlay from '@/components/ui/Overlay';
 import Popup from '@/components/Popup';
 import Header from '@/components/Header';
+
+Vue.mixin(global);
 
 export default {
   components: {
@@ -51,6 +55,5 @@ html {
   background-color: #000000;
   position: relative;
   min-height: 100vh;
-  position: relative;
 }
 </style>

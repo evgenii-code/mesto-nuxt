@@ -1,7 +1,5 @@
 <template>
   <div class="card">
-    <button class="card__delete"></button>
-
     <div class="card__picture">
       <img :src="url" alt="Picture of nice place" class="card__image" />
     </div>
@@ -13,6 +11,8 @@
         <p class="card__like-counter">{{ likes }}</p>
       </div>
     </div>
+
+    <button class="card__delete"></button>
   </div>
 </template>
 
@@ -56,7 +56,6 @@ export default {
   background-image: url('~@/assets/images/trash-icon.svg');
   background-size: contain;
   background-repeat: no-repeat;
-  z-index: 1;
 
   cursor: pointer;
 }

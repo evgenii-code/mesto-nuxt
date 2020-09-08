@@ -26,7 +26,7 @@ export default {
 <style scoped>
 .popup {
   position: absolute;
-  top: 50%;
+  top: 50vh;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -34,7 +34,7 @@ export default {
 .popup__container {
   position: relative;
   width: 430px;
-  height: 330px;
+  min-height: 330px;
   background-color: #ffffff;
   border-radius: 10px;
   padding: 36px;
@@ -53,5 +53,22 @@ export default {
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
+}
+
+@media screen and (max-width: 640px) {
+  .popup {
+    width: 90%;
+  }
+
+  .popup__container {
+    padding: 25px;
+    width: 100%;
+  }
+
+  .popup__close-button {
+    right: 20px;
+    top: 20px;
+    border: 1px solid red;
+  }
 }
 </style>

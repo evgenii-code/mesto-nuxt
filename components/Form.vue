@@ -63,6 +63,7 @@ export default {
 }
 
 .form__input {
+  margin-bottom: 20px;
 }
 
 .form__button {
