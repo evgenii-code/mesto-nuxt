@@ -1,6 +1,6 @@
 <template>
   <section class="profile">
-    <div class="profile__avatar">
+    <div class="profile__avatar" @click.prevent="togglePopup('editAvatar')">
       <img
         src="@/assets/images/avatar.jpg"
         alt="User avatar"
@@ -14,14 +14,14 @@
       <h2 class="profile__about">Sailor, researcher</h2>
       <Button
         class="profile__button profile__button_type_edit"
-        @btn-click="togglePopup"
+        @btn-click="togglePopup('editProfile')"
         >Редактировать профиль</Button
       >
     </div>
 
     <Button
       class="profile__button profile__button_type_add"
-      @btn-click="togglePopup"
+      @btn-click="togglePopup('addCard')"
     ></Button>
   </section>
 </template>
@@ -37,7 +37,9 @@ export default {
   },
 
   methods: {
-    togglePopup() {
+    togglePopup(payload) {
+      this.$store.dispatch('form/updateCurrentContent', payload);
+
       return this.$store.commit('popup/togglePopup');
     },
   },

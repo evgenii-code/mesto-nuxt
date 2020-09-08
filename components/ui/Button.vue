@@ -1,11 +1,30 @@
 <template>
-  <button class="button" @click.prevent="$emit('btn-click')">
+  <button
+    class="button"
+    @click.prevent="$emit('btn-click')"
+    :disabled="disabled"
+    :type="type"
+  >
     <slot></slot>
   </button>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    type: {
+      type: String,
+      default: 'button',
+      validator: function (value) {
+        return ['submit', 'reset', 'button', 'menu'].indexOf(value) !== -1;
+      },
+    },
+  },
+};
 </script>
 
 <style scoped>
