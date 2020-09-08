@@ -63,6 +63,7 @@ export default {
   .popup__container {
     padding: 25px;
     width: 100%;
+    display: flex;
   }
 
   .popup__close-button {
