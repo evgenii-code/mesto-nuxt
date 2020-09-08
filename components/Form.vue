@@ -1,24 +1,26 @@
 <template>
-  <form class="form" @submit.prevent="">
-    <h2 class="form__title">{{ title }}</h2>
+  <ValidationObserver slim v-slot="{ invalid }">
+    <form class="form" @submit.prevent="">
+      <h2 class="form__title">{{ title }}</h2>
 
-    <Input
-      v-for="input of getCurrentContent"
-      :key="input.id"
-      class="form__input"
-      :type="input.type"
-      :placeholder="input.placeholder"
-      :minlength="input.minlength"
-      :maxlength="input.maxlength"
-    />
+      <Input
+        v-for="input of getCurrentContent"
+        :key="input.id"
+        class="form__input"
+        :type="input.type"
+        :placeholder="input.placeholder"
+        :minlength="input.minlength"
+        :maxlength="input.maxlength"
+      />
 
-    <Button
-      class="form__button form__button_disabled"
-      :disabled="false"
-      :type="'button'"
-      >Сохранить</Button
-    >
-  </form>
+      <Button
+        :class="['form__button', { form__button_disabled: invalid }]"
+        :disabled="invalid"
+        :type="'button'"
+        >Сохранить</Button
+      >
+    </form>
+  </ValidationObserver>
 </template>
 
 <script>

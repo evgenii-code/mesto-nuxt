@@ -1,5 +1,5 @@
 <template>
-  <ValidationProvider>
+  <ValidationProvider slim rules="required">
     <div class="input" slot-scope="{ errors }">
       <input
         class="input__field"
@@ -26,8 +26,14 @@ export default {
   },
 
   beforeMount() {
-    this.minlength ? (this.minmax.minlength = this.minlength) : '';
-    this.maxlength ? (this.minmax.maxlength = this.maxlength) : '';
+    this.getMinMaxLength;
+  },
+
+  computed: {
+    getMinMaxLength() {
+      this.minlength && (this.minmax.minlength = this.minlength);
+      this.maxlength && (this.minmax.maxlength = this.maxlength);
+    },
   },
 
   components: {
