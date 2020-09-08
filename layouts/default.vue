@@ -55,6 +55,5 @@ html {
   background-color: #000000;
   position: relative;
   min-height: 100vh;
-  position: relative;
 }
 </style>
