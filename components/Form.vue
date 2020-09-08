@@ -1,5 +1,5 @@
 <template>
-  <form class="form">
+  <form class="form" @submit.prevent="">
     <h2 class="form__title">{{ title }}</h2>
 
     <Input
@@ -22,11 +22,13 @@
 </template>
 
 <script>
+import { ValidationObserver } from 'vee-validate';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 
 export default {
   components: {
+    ValidationObserver,
     Input,
     Button,
   },
