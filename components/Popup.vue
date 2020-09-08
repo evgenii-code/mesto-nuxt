@@ -34,7 +34,7 @@ export default {
 .popup__container {
   position: relative;
   width: 430px;
-  height: 330px;
+  min-height: 330px;
   background-color: #ffffff;
   border-radius: 10px;
   padding: 36px;

@@ -36,13 +36,13 @@ export default {
     Button,
   },
 
-  methods: {
-    togglePopup(payload) {
-      this.$store.dispatch('form/updateCurrentContent', payload);
+  // methods: {
+  //   togglePopup(payload) {
+  //     this.$store.dispatch('form/updateCurrentContent', payload);
 
-      return this.$store.commit('popup/togglePopup');
-    },
-  },
+  //     return this.$store.commit('popup/togglePopup');
+  //   },
+  // },
 };
 </script>
 
