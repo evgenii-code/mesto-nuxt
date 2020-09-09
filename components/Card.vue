@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="card__picture">
+    <div class="card__picture" @click="togglePopup({ event: $event })">
       <img :src="url" alt="Picture of nice place" class="card__image" />
     </div>
     <div class="card__description">
@@ -34,6 +34,8 @@ export default {
       type: String,
     },
   },
+
+  methods: {},
 };
 </script>
 

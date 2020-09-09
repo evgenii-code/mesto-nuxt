@@ -36,19 +36,9 @@ export default {
     Button,
   },
 
-  data() {
-    return {
-      currentContent: {},
-    };
-  },
-
-  created() {
-    this.currentContent = this.getCurrentContent;
-  },
-
-  computed: {
-    getCurrentContent() {
-      return this.$store.getters['form/getCurrentContent'];
+  props: {
+    currentContent: {
+      type: Object,
     },
   },
 

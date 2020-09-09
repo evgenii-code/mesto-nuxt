@@ -2,7 +2,14 @@
   <div class="popup">
     <div class="popup__container">
       <button class="popup__close-button" @click.prevent="togglePopup"></button>
-      <Form />
+
+      <Form
+        class="popup__form"
+        v-if="typeof getCurrentContent !== 'string'"
+        :currentContent="getCurrentContent"
+      />
+
+      <img class="popup__image" v-else :src="getCurrentContent" alt="Photo" />
     </div>
   </div>
 </template>
@@ -15,9 +22,9 @@ export default {
     Form,
   },
 
-  methods: {
-    togglePopup() {
-      return this.$store.commit('popup/togglePopup');
+  computed: {
+    getCurrentContent() {
+      return this.$store.getters['form/getCurrentContent'];
     },
   },
 };
@@ -25,20 +32,29 @@ export default {
 
 <style scoped>
 .popup {
-  position: absolute;
-  top: 50vh;
+  position: fixed;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .popup__container {
   position: relative;
+}
+
+.popup__form {
   width: 430px;
   min-height: 330px;
   background-color: #ffffff;
   border-radius: 10px;
   padding: 36px;
   display: flex;
+}
+
+.popup__image {
+  max-width: 90vw;
+  max-height: 90vw;
+  object-fit: cover;
 }
 
 .popup__close-button {
@@ -61,7 +77,6 @@ export default {
   }
 
   .popup__container {
-    padding: 25px;
     width: 100%;
     display: flex;
   }
