@@ -1,97 +1,73 @@
+class FormContent {
+  constructor(title, method, inputs) {
+    this.title = title;
+    this.method = method;
+    this.inputs = inputs;
+  }
+}
+
+const fields = {
+  email: {
+    name: 'email',
+    type: 'email',
+    placeholder: 'Email',
+    minlength: 2,
+  },
+  password: {
+    name: 'password',
+    type: 'password',
+    placeholder: 'Пароль',
+    minlength: 8,
+  },
+  name: {
+    name: 'name',
+    type: 'text',
+    placeholder: 'Имя',
+    minlength: 2,
+    maxlength: 30,
+  },
+  about: {
+    name: 'about',
+    type: 'text',
+    placeholder: 'О себе',
+    minlength: 2,
+    maxlength: 30,
+  },
+  avatar: {
+    name: 'avatar',
+    type: 'url',
+    placeholder: 'Ссылка на картинку',
+    minlength: 2,
+  },
+  link: {
+    name: 'link',
+    type: 'url',
+    placeholder: 'Ссылка на картинку',
+    minlength: 2,
+  },
+};
+
 export const state = () => ({
   formContent: {
-    addCard: [
-      {
-        id: 1,
-        type: 'text',
-        placeholder: 'Название',
-        minlength: 2,
-        maxlength: 30,
-      },
-      {
-        id: 2,
-        type: 'url',
-        placeholder: 'Ссылка на картинку',
-        minlength: 2,
-      },
-    ],
-
-    signUp: [
-      {
-        id: 1,
-        type: 'email',
-        placeholder: 'Email',
-        minlength: 2,
-      },
-      {
-        id: 2,
-        type: 'password',
-        placeholder: 'Пароль',
-        minlength: 8,
-      },
-      {
-        id: 3,
-        type: 'text',
-        placeholder: 'Имя',
-        minlength: 2,
-        maxlength: 30,
-      },
-      {
-        id: 4,
-        type: 'text',
-        placeholder: 'О себе',
-        minlength: 2,
-        maxlength: 30,
-      },
-      {
-        id: 5,
-        type: 'url',
-        placeholder: 'Ссылка на аватар',
-        minlength: 2,
-      },
-    ],
-
-    signIn: [
-      {
-        id: 1,
-        type: 'email',
-        placeholder: 'Email',
-        minlength: 2,
-      },
-      {
-        id: 2,
-        type: 'password',
-        placeholder: 'Пароль',
-        minlength: 8,
-      },
-    ],
-
-    editProfile: [
-      {
-        id: 1,
-        type: 'text',
-        placeholder: 'Имя',
-        minlength: 2,
-        maxlength: 30,
-      },
-      {
-        id: 2,
-        type: 'text',
-        placeholder: 'О себе',
-        minlength: 2,
-        maxlength: 30,
-      },
-    ],
-
-    editAvatar: [
-      {
-        id: 1,
-        type: 'url',
-        placeholder: 'Ссылка на аватар',
-        minlength: 2,
-      },
-    ],
+    addCard: new FormContent('Добавить карточку', 'POST', [
+      fields.name,
+      fields.link,
+    ]),
+    signUp: new FormContent('Регистрация', 'POST', [
+      fields.email,
+      fields.password,
+      fields.name,
+      fields.about,
+      fields.avatar,
+    ]),
+    signIn: new FormContent('Вход', 'POST', [fields.email, fields.password]),
+    editProfile: new FormContent('Редактировать профиль', 'PATCH', [
+      fields.name,
+      fields.about,
+    ]),
+    editAvatar: new FormContent('Изменить аватар', 'PATCH', [fields.avatar]),
   },
+
   currentContent: [],
 });
 

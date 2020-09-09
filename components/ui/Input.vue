@@ -3,8 +3,8 @@
     <div class="input" slot-scope="{ errors }">
       <input
         class="input__field"
-        :name="type"
-        v-model="data"
+        :name="name"
+        v-model.trim="data"
         :type="type"
         :placeholder="placeholder"
         v-bind="minmax"
@@ -44,11 +44,18 @@ export default {
     placeholder: {
       type: String,
       default: 'Введите текст',
+      required: true,
+    },
+
+    name: {
+      type: String,
+      required: true,
     },
 
     type: {
       type: String,
       default: 'text',
+      required: true,
       validator: function (value) {
         return ['text', 'email', 'password', 'url'].indexOf(value) !== -1;
       },

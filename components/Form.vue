@@ -1,13 +1,14 @@
 <template>
   <ValidationObserver slim v-slot="{ invalid }">
-    <form class="form" @submit.prevent="">
-      <h2 class="form__title">{{ title }}</h2>
+    <form class="form" ref="form" @submit.prevent="onSubmit" novalidate>
+      <h2 class="form__title">{{ currentContent.title }}</h2>
 
       <Input
-        v-for="input of getCurrentContent"
-        :key="input.id"
+        v-for="(input, index) of currentContent.inputs"
+        :key="index"
         class="form__input"
         :type="input.type"
+        :name="input.name"
         :placeholder="input.placeholder"
         :minlength="input.minlength"
         :maxlength="input.maxlength"
@@ -16,7 +17,7 @@
       <Button
         :class="['form__button', { form__button_disabled: invalid }]"
         :disabled="invalid"
-        :type="'button'"
+        :type="'submit'"
         >Сохранить</Button
       >
     </form>
@@ -35,16 +36,33 @@ export default {
     Button,
   },
 
+  data() {
+    return {
+      currentContent: {},
+    };
+  },
+
+  created() {
+    this.currentContent = this.getCurrentContent;
+  },
+
   computed: {
     getCurrentContent() {
       return this.$store.getters['form/getCurrentContent'];
     },
   },
 
-  props: {
-    title: {
-      type: String,
-      default: 'Название',
+  methods: {
+    onSubmit(e) {
+      const inputs = [...e.target.elements].filter(
+        (item) => item.tagName === 'INPUT'
+      );
+      const data = inputs.reduce((result, item) => {
+        result[item.name] = item.value;
+        return result;
+      }, {});
+
+      console.log(data);
     },
   },
 };

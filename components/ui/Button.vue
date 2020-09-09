@@ -1,7 +1,7 @@
 <template>
   <button
     class="button"
-    @click.prevent="$emit('btn-click')"
+    @click="$emit('btn-click')"
     :disabled="disabled"
     :type="type"
   >
