@@ -4,7 +4,7 @@
       <input
         class="input__field"
         :name="name"
-        v-model="data"
+        v-model.trim="data"
         :type="type"
         :placeholder="placeholder"
         v-bind="minmax"
