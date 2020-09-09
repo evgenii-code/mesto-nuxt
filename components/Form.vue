@@ -57,12 +57,13 @@ export default {
       const inputs = [...e.target.elements].filter(
         (item) => item.tagName === 'INPUT'
       );
+
       const data = inputs.reduce((result, item) => {
         result[item.name] = item.value;
         return result;
       }, {});
 
-      console.log(data);
+      this.$store.dispatch('form/sendData', 'post');
     },
   },
 };
