@@ -8,6 +8,7 @@
         :key="index"
         class="form__input"
         :type="input.type"
+        :name="input.name"
         :placeholder="input.placeholder"
         :minlength="input.minlength"
         :maxlength="input.maxlength"
