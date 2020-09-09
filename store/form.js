@@ -49,23 +49,23 @@ const fields = {
 
 export const state = () => ({
   formContent: {
-    addCard: new FormContent('Добавить карточку', 'POST', [
+    addCard: new FormContent('Добавить карточку', 'post', [
       fields.name,
       fields.link,
     ]),
-    signUp: new FormContent('Регистрация', 'POST', [
+    signUp: new FormContent('Регистрация', 'post', [
       fields.email,
       fields.password,
       fields.name,
       fields.about,
       fields.avatar,
     ]),
-    signIn: new FormContent('Вход', 'POST', [fields.email, fields.password]),
-    editProfile: new FormContent('Редактировать профиль', 'PATCH', [
+    signIn: new FormContent('Вход', 'post', [fields.email, fields.password]),
+    editProfile: new FormContent('Редактировать профиль', 'patch', [
       fields.name,
       fields.about,
     ]),
-    editAvatar: new FormContent('Изменить аватар', 'PATCH', [fields.avatar]),
+    editAvatar: new FormContent('Изменить аватар', 'patch', [fields.avatar]),
   },
 
   currentContent: [],
@@ -83,6 +83,14 @@ export const actions = {
       name: 'currentContent',
       value: state.formContent[payload],
     });
+  },
+
+  sendData({ state, commit }, method) {
+    return this.$axios[`$${method}`](`http://api.mesto-app.ga/users`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => console.log(error));
   },
 };
 
