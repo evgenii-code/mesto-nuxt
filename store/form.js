@@ -81,7 +81,7 @@ export const actions = {
   updateCurrentContent({ state, commit }, payload) {
     return commit('setState', {
       name: 'currentContent',
-      value: state.formContent[payload],
+      value: state.formContent[payload] || payload,
     });
   },
 

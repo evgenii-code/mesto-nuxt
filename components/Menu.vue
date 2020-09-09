@@ -2,12 +2,16 @@
   <nav class="menu">
     <ul class="menu__items">
       <li class="menu__item">
-        <Button class="menu__button" @btn-click="togglePopup('signUp')"
+        <Button
+          class="menu__button"
+          @btn-click="togglePopup({ payload: 'signUp' })"
           >Sign Up</Button
         >
       </li>
       <li class="menu__item">
-        <Button class="menu__button" @btn-click="togglePopup('signIn')"
+        <Button
+          class="menu__button"
+          @btn-click="togglePopup({ payload: 'signIn' })"
           >Sign In</Button
         >
       </li>
