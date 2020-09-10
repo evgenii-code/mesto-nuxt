@@ -68,10 +68,7 @@ export default {
     transpile: ['vee-validate/dist/rules'],
   },
   publicRuntimeConfig: {
-    baseURL: process.env.BASE_URL,
-    apiURL: process.env.API_URL,
-  },
-  privateRuntimeConfig: {
-    apiSecret: process.env.API_SECRET,
+    baseURL: process.env.BASE_URL || 'https://mesto-app.ga',
+    apiURL: process.env.API_URL || 'https://api.mesto-app.ga',
   },
 };
