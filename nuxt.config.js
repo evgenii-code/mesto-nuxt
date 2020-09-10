@@ -67,4 +67,11 @@ export default {
   build: {
     transpile: ['vee-validate/dist/rules'],
   },
+  publicRuntimeConfig: {
+    baseURL: process.env.BASE_URL,
+    apiURL: process.env.API_URL,
+  },
+  privateRuntimeConfig: {
+    apiSecret: process.env.API_SECRET,
+  },
 };
