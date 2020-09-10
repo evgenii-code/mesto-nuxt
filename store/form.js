@@ -86,11 +86,14 @@ export const actions = {
   },
 
   sendData({ state, commit }, { data }) {
+    const { apiURL } = this.$config;
+
     return this.$axios
-      .post(`https://api.mesto-app.ga/signin`, data)
+      .post(`${apiURL}/signin`, data, { withCredentials: true })
       .then((response) => {
-        console.log(response);
-        console.log(this.$cookie);
+        if (response.statusText === 'OK') return console.log(response);
+
+        return Promise.reject(new Error(`Ошибка: ${response}`));
       })
       .catch((error) => console.log(error));
   },
