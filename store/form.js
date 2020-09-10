@@ -85,10 +85,12 @@ export const actions = {
     });
   },
 
-  sendData({ state, commit }, method) {
-    return this.$axios[`$${method}`](`http://api.mesto-app.ga/users`)
+  sendData({ state, commit }, { data }) {
+    return this.$axios
+      .post(`https://api.mesto-app.ga/signin`, data)
       .then((response) => {
         console.log(response);
+        console.log(this.$cookie);
       })
       .catch((error) => console.log(error));
   },

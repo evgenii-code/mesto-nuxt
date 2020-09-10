@@ -17,8 +17,10 @@ export const actions = {
       },
     };
 
+    const { apiURL } = this.$config;
+
     return this.$axios
-      .$get(`http://api.mesto-app.ga/cards`, config)
+      .$get(`${apiURL}/cards`, config)
       .then((response) => {
         return commit('setState', {
           name: 'cards',
