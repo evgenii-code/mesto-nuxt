@@ -68,7 +68,10 @@ export default {
     transpile: ['vee-validate/dist/rules'],
   },
   publicRuntimeConfig: {
-    baseURL: process.env.BASE_URL || 'https://mesto-app.ga',
-    apiURL: process.env.API_URL || 'https://api.mesto-app.ga',
+    baseURL: process.env.BASE_URL || 'http://localhost:8000',
+    apiURL: process.env.API_URL || 'http://localhost:3000',
+  },
+  server: {
+    port: 8000,
   },
 };
