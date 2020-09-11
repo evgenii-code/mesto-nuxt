@@ -1,14 +1,19 @@
 <template>
   <div class="card">
-    <div class="card__picture" @click="togglePopup({ event: $event })">
+    <div class="card__picture" @click="checkPayload({ event: $event })">
       <img :src="url" alt="Picture of nice place" class="card__image" />
     </div>
     <div class="card__description">
-      <div class="card__title">{{ title }}</div>
+      <div class="card__title">{{ card.name }}</div>
 
       <div class="card__like-container">
-        <button class="card__like card__like_type_inactive"></button>
-        <p class="card__like-counter">{{ likes }}</p>
+        <button
+          :class="[
+            'card__like',
+            { card__like_inactive: checkLike(card.likes) },
+          ]"
+        ></button>
+        <p class="card__like-counter">{{ card.likes.length }}</p>
       </div>
     </div>
 
@@ -20,6 +25,9 @@
 import Like from '@/assets/images/like-active.svg';
 export default {
   props: {
+    card: {
+      type: Object,
+    },
     title: {
       type: String,
       default: 'Название',
@@ -35,7 +43,11 @@ export default {
     },
   },
 
-  methods: {},
+  methods: {
+    checkLike(likes) {
+      return !likes.some((like) => like._id === this.user._id);
+    },
+  },
 };
 </script>
 
@@ -108,13 +120,14 @@ export default {
   cursor: pointer;
   background-color: unset;
   border: none;
-}
-
-.card__like_type_active {
   background-image: url('~@/assets/images/like-active.svg');
 }
 
-.card__like_type_inactive {
+/* .card__like_type_active {
+  background-image: url('~@/assets/images/like-active.svg');
+} */
+
+.card__like_inactive {
   background-image: url('~@/assets/images/like-inactive.svg');
 }
 </style>

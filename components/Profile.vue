@@ -2,7 +2,7 @@
   <section class="profile">
     <div
       class="profile__avatar"
-      @click.prevent="togglePopup({ payload: 'editAvatar' })"
+      @click.prevent="checkPayload({ payload: 'editAvatar' })"
     >
       <img class="profile__img" :src="user.avatar" alt="User avatar" />
 
@@ -14,14 +14,14 @@
       <h2 class="profile__about">{{ user.about }}</h2>
       <Button
         class="profile__button profile__button_type_edit"
-        @btn-click="togglePopup({ payload: 'editProfile' })"
+        @btn-click="checkPayload({ payload: 'editProfile' })"
         >Редактировать профиль</Button
       >
     </div>
 
     <Button
       class="profile__button profile__button_type_add"
-      @btn-click="togglePopup({ payload: 'addCard' })"
+      @btn-click="checkPayload({ payload: 'addCard' })"
     ></Button>
   </section>
 </template>
@@ -36,11 +36,11 @@ export default {
     Button,
   },
 
-  computed: {
-    user() {
-      return this.$store.getters['profile/getUser'];
-    },
-  },
+  // computed: {
+  //   user() {
+  //     return this.$store.getters['profile/getUser'];
+  //   },
+  // },
 
   async fetch() {
     await this.$store.dispatch('profile/fetchUser');

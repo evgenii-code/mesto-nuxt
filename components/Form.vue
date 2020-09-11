@@ -53,10 +53,13 @@ export default {
         return result;
       }, {});
 
-      this.$store.dispatch('form/sendData', {
-        method: this.currentContent.method,
+      const result = this.$store.dispatch('form/sendData', {
+        form: this.currentContent,
         data,
-        path: this.currentContent.path,
+      });
+
+      result.then((res) => {
+        console.log(res);
       });
     },
   },

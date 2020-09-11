@@ -4,14 +4,14 @@
       <li class="menu__item">
         <Button
           class="menu__button"
-          @btn-click="togglePopup({ payload: 'signUp' })"
+          @btn-click="checkPayload({ payload: 'signUp' })"
           >Sign Up</Button
         >
       </li>
       <li class="menu__item">
         <Button
           class="menu__button"
-          @btn-click="togglePopup({ payload: 'signIn' })"
+          @btn-click="checkPayload({ payload: 'signIn' })"
           >Sign In</Button
         >
       </li>

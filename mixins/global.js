@@ -1,11 +1,21 @@
 export default {
   methods: {
-    togglePopup({ payload, event }) {
+    togglePopup() {
+      return this.$store.commit('popup/togglePopup');
+    },
+
+    checkPayload({ payload, event }) {
       if (payload) this.$store.dispatch('form/updateCurrentContent', payload);
       if (event)
         this.$store.dispatch('form/updateCurrentContent', event.target.src);
 
-      return this.$store.commit('popup/togglePopup');
+      this.togglePopup();
+    },
+  },
+
+  computed: {
+    user() {
+      return this.$store.getters['profile/getUser'];
     },
   },
 };

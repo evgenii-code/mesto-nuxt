@@ -96,14 +96,20 @@ export const actions = {
     });
   },
 
-  sendData({ state, commit }, { method, data, path }) {
+  sendData({ state, commit, dispatch }, { form, data }) {
     const { apiURL } = this.$config;
+    const { path, method } = form;
 
     return this.$axios[method](`${apiURL}${path}`, data, {
       withCredentials: true,
     })
       .then((response) => {
-        console.log(response);
+        commit('popup/togglePopup', null, { root: true });
+        if (path.includes('/users') || path.includes('/signin'))
+          dispatch('profile/fetchUser', null, { root: true });
+        if (path.includes('/cards'))
+          dispatch('cards/fetchCards', null, { root: true });
+        return response;
       })
       .catch((error) => console.log(error));
   },
