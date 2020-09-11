@@ -54,6 +54,7 @@ export default {
       }, {});
 
       this.$store.dispatch('form/sendData', {
+        method: this.currentContent.method,
         data,
         path: this.currentContent.path,
       });

@@ -61,17 +61,22 @@ export const state = () => ({
       fields.about,
       fields.avatar,
     ]),
-    signIn: new FormContent('Вход', 'post', '/singin', [
+    signIn: new FormContent('Вход', 'post', '/signin', [
       fields.email,
       fields.password,
     ]),
-    editProfile: new FormContent('Редактировать профиль', 'patch', '/me', [
-      fields.name,
-      fields.about,
-    ]),
-    editAvatar: new FormContent('Изменить аватар', 'patch', '/me/avatar', [
-      fields.avatar,
-    ]),
+    editProfile: new FormContent(
+      'Редактировать профиль',
+      'patch',
+      '/users/me',
+      [fields.name, fields.about]
+    ),
+    editAvatar: new FormContent(
+      'Изменить аватар',
+      'patch',
+      '/users/me/avatar',
+      [fields.avatar]
+    ),
   },
 
   currentContent: [],
@@ -91,11 +96,12 @@ export const actions = {
     });
   },
 
-  sendData({ state, commit }, { data, path }) {
+  sendData({ state, commit }, { method, data, path }) {
     const { apiURL } = this.$config;
 
-    return this.$axios
-      .post(`${apiURL}${path}`, data, { withCredentials: true })
+    return this.$axios[method](`${apiURL}${path}`, data, {
+      withCredentials: true,
+    })
       .then((response) => {
         console.log(response);
       })
