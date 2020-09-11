@@ -69,11 +69,9 @@ export const state = () => ({
       fields.name,
       fields.about,
     ]),
-    editAvatar: new FormContent(
-      'Изменить аватар',
-      'patch',
-      '/me/avatar'[fields.avatar]
-    ),
+    editAvatar: new FormContent('Изменить аватар', 'patch', '/me/avatar', [
+      fields.avatar,
+    ]),
   },
 
   currentContent: [],

@@ -4,7 +4,8 @@
       class="profile__avatar"
       @click.prevent="togglePopup({ payload: 'editAvatar' })"
     >
-      <img :src="user.avatar" alt="User avatar" class="profile__img" />
+      <img class="profile__img" :src="user.avatar" alt="User avatar" />
+
       <div class="profile__img-overlay"></div>
     </div>
 
@@ -35,12 +36,6 @@ export default {
     Button,
   },
 
-  // data() {
-  //   return {
-  //     user: {},
-  //   };
-  // },
-
   computed: {
     user() {
       return this.$store.getters['profile/getUser'];
@@ -62,14 +57,25 @@ export default {
 }
 
 .profile__avatar {
+  width: 100%;
   max-width: 150px;
+  max-height: 150px;
   position: relative;
-  height: min-content;
+}
+
+.profile__avatar:after {
+  content: '';
+  display: block;
+  padding-bottom: 100%;
 }
 
 .profile__img {
-  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 50%;
 }
 
