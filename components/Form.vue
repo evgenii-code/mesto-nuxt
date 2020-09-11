@@ -53,7 +53,10 @@ export default {
         return result;
       }, {});
 
-      this.$store.dispatch('form/sendData', { data });
+      this.$store.dispatch('form/sendData', {
+        data,
+        path: this.currentContent.path,
+      });
     },
   },
 };

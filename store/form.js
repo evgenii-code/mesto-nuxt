@@ -1,7 +1,8 @@
 class FormContent {
-  constructor(title, method, inputs) {
+  constructor(title, method, path, inputs) {
     this.title = title;
     this.method = method;
+    this.path = path;
     this.inputs = inputs;
   }
 }
@@ -49,23 +50,30 @@ const fields = {
 
 export const state = () => ({
   formContent: {
-    addCard: new FormContent('Добавить карточку', 'post', [
+    addCard: new FormContent('Добавить карточку', 'post', '/cards', [
       fields.name,
       fields.link,
     ]),
-    signUp: new FormContent('Регистрация', 'post', [
+    signUp: new FormContent('Регистрация', 'post', '/signup', [
       fields.email,
       fields.password,
       fields.name,
       fields.about,
       fields.avatar,
     ]),
-    signIn: new FormContent('Вход', 'post', [fields.email, fields.password]),
-    editProfile: new FormContent('Редактировать профиль', 'patch', [
+    signIn: new FormContent('Вход', 'post', '/singin', [
+      fields.email,
+      fields.password,
+    ]),
+    editProfile: new FormContent('Редактировать профиль', 'patch', '/me', [
       fields.name,
       fields.about,
     ]),
-    editAvatar: new FormContent('Изменить аватар', 'patch', [fields.avatar]),
+    editAvatar: new FormContent(
+      'Изменить аватар',
+      'patch',
+      '/me/avatar'[fields.avatar]
+    ),
   },
 
   currentContent: [],
@@ -85,15 +93,13 @@ export const actions = {
     });
   },
 
-  sendData({ state, commit }, { data }) {
+  sendData({ state, commit }, { data, path }) {
     const { apiURL } = this.$config;
 
     return this.$axios
-      .post(`${apiURL}/signin`, data, { withCredentials: true })
+      .post(`${apiURL}${path}`, data, { withCredentials: true })
       .then((response) => {
-        if (response.statusText === 'OK') return console.log(response);
-
-        return Promise.reject(new Error(`Ошибка: ${response}`));
+        console.log(response);
       })
       .catch((error) => console.log(error));
   },
