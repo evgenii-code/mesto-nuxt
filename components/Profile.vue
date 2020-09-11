@@ -4,17 +4,13 @@
       class="profile__avatar"
       @click.prevent="togglePopup({ payload: 'editAvatar' })"
     >
-      <img
-        src="@/assets/images/avatar.jpg"
-        alt="User avatar"
-        class="profile__img"
-      />
+      <img :src="user.avatar" alt="User avatar" class="profile__img" />
       <div class="profile__img-overlay"></div>
     </div>
 
     <div class="profile__user">
-      <h1 class="profile__name">Jacques Cousteau</h1>
-      <h2 class="profile__about">Sailor, researcher</h2>
+      <h1 class="profile__name">{{ user.name }}</h1>
+      <h2 class="profile__about">{{ user.about }}</h2>
       <Button
         class="profile__button profile__button_type_edit"
         @btn-click="togglePopup({ payload: 'editProfile' })"
@@ -37,6 +33,22 @@ export default {
   components: {
     Container,
     Button,
+  },
+
+  // data() {
+  //   return {
+  //     user: {},
+  //   };
+  // },
+
+  computed: {
+    user() {
+      return this.$store.getters['profile/getUser'];
+    },
+  },
+
+  async fetch() {
+    await this.$store.dispatch('profile/fetchUser');
   },
 };
 </script>
