@@ -8,16 +8,18 @@
 
       <div class="card__like-container">
         <button
-          :class="[
-            'card__like',
-            { card__like_inactive: checkLike(card.likes) },
-          ]"
+          :class="['card__like', { card__like_inactive: !checkLike }]"
+          @click.prevent="likeCard(card._id)"
         ></button>
         <p class="card__like-counter">{{ card.likes.length }}</p>
       </div>
     </div>
 
-    <button class="card__delete"></button>
+    <button
+      v-if="showDeleteButton"
+      class="card__delete"
+      @click.prevent="deleteCard(card._id)"
+    ></button>
   </div>
 </template>
 
@@ -43,9 +45,34 @@ export default {
     },
   },
 
+  computed: {
+    checkLike() {
+      return this.isLiked();
+    },
+
+    showDeleteButton() {
+      return this.card.owner._id === this.user._id;
+    },
+  },
+
   methods: {
-    checkLike(likes) {
-      return !likes.some((like) => like._id === this.user._id);
+    isLiked() {
+      return this.card.likes.some((like) => like._id === this.user._id);
+    },
+
+    deleteCard(cardId) {
+      this.$store.dispatch('cards/deleteCard', { cardId });
+    },
+
+    likeCard(cardId) {
+      let method = 'delete';
+
+      if (!this.isLiked()) {
+        method = 'put';
+        console.log('here');
+      }
+
+      this.$store.dispatch('cards/likeCard', { cardId, method });
     },
   },
 };
