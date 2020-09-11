@@ -2,6 +2,7 @@
   <section class="cards">
     <Card
       v-for="card in cards"
+      :card="card"
       :key="card.id"
       :title="card.name"
       :likes="card.likes.length"

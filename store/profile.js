@@ -1,5 +1,5 @@
 export const state = () => ({
-  cards: [],
+  user: {},
 });
 
 export const mutations = {
@@ -9,23 +9,23 @@ export const mutations = {
 };
 
 export const actions = {
-  fetchCards({ state, commit }) {
+  fetchUser({ state, commit }) {
     const { apiURL } = this.$config;
 
     return this.$axios
-      .$get(`${apiURL}/cards`)
-      .then((response) => {
-        return commit('setState', {
-          name: 'cards',
-          value: response.data,
-        });
-      })
+      .get(`${apiURL}/users`, { withCredentials: true })
+      .then((response) =>
+        commit('setState', {
+          name: 'user',
+          value: response.data.data,
+        })
+      )
       .catch((error) => console.log(error));
   },
 };
 
 export const getters = {
-  getCards(state) {
-    return state.cards;
+  getUser(state) {
+    return state.user;
   },
 };

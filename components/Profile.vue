@@ -2,29 +2,26 @@
   <section class="profile">
     <div
       class="profile__avatar"
-      @click.prevent="togglePopup({ payload: 'editAvatar' })"
+      @click.prevent="checkPayload({ payload: 'editAvatar' })"
     >
-      <img
-        src="@/assets/images/avatar.jpg"
-        alt="User avatar"
-        class="profile__img"
-      />
+      <img class="profile__img" :src="user.avatar" alt="User avatar" />
+
       <div class="profile__img-overlay"></div>
     </div>
 
     <div class="profile__user">
-      <h1 class="profile__name">Jacques Cousteau</h1>
-      <h2 class="profile__about">Sailor, researcher</h2>
+      <h1 class="profile__name">{{ user.name }}</h1>
+      <h2 class="profile__about">{{ user.about }}</h2>
       <Button
         class="profile__button profile__button_type_edit"
-        @btn-click="togglePopup({ payload: 'editProfile' })"
+        @btn-click="checkPayload({ payload: 'editProfile' })"
         >Редактировать профиль</Button
       >
     </div>
 
     <Button
       class="profile__button profile__button_type_add"
-      @btn-click="togglePopup({ payload: 'addCard' })"
+      @btn-click="checkPayload({ payload: 'addCard' })"
     ></Button>
   </section>
 </template>
@@ -38,6 +35,16 @@ export default {
     Container,
     Button,
   },
+
+  // computed: {
+  //   user() {
+  //     return this.$store.getters['profile/getUser'];
+  //   },
+  // },
+
+  async fetch() {
+    await this.$store.dispatch('profile/fetchUser');
+  },
 };
 </script>
 
@@ -50,14 +57,25 @@ export default {
 }
 
 .profile__avatar {
+  width: 100%;
   max-width: 150px;
+  max-height: 150px;
   position: relative;
-  height: min-content;
+}
+
+.profile__avatar:after {
+  content: '';
+  display: block;
+  padding-bottom: 100%;
 }
 
 .profile__img {
-  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 50%;
 }
 
