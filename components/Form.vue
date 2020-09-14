@@ -1,7 +1,7 @@
 <template>
   <ValidationObserver slim v-slot="{ invalid }">
     <form class="form" ref="form" @submit.prevent="onSubmit" novalidate>
-      <h2 class="form__title">{{ currentContent.title }}</h2>
+      <Title class="form__title" :title="currentContent.title"></Title>
 
       <Input
         v-for="(input, index) of currentContent.inputs"
@@ -28,12 +28,14 @@
 import { ValidationObserver } from 'vee-validate';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
+import Title from '@/components/ui/Title';
 
 export default {
   components: {
     ValidationObserver,
     Input,
     Button,
+    Title,
   },
 
   props: {
@@ -53,13 +55,9 @@ export default {
         return result;
       }, {});
 
-      const result = this.$store.dispatch('form/sendData', {
+      this.$store.dispatch('form/sendData', {
         form: this.currentContent,
         data,
-      });
-
-      result.then((res) => {
-        console.log(res);
       });
     },
   },
@@ -75,10 +73,6 @@ export default {
 }
 
 .form__title {
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 29px;
-
   color: #000000;
 }
 

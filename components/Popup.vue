@@ -10,17 +10,25 @@
         :alt="getCurrentContent.title"
       />
 
-      <Form class="popup__form" v-else :currentContent="getCurrentContent" />
+      <Info
+        class="popup__content"
+        v-else-if="getCurrentContent.message"
+        :currentContent="getCurrentContent"
+      />
+
+      <Form class="popup__content" v-else :currentContent="getCurrentContent" />
     </div>
   </div>
 </template>
 
 <script>
 import Form from '@/components/Form';
+import Info from '@/components/Info';
 
 export default {
   components: {
     Form,
+    Info,
   },
 
   computed: {
@@ -43,7 +51,7 @@ export default {
   position: relative;
 }
 
-.popup__form {
+.popup__content {
   width: 430px;
   min-height: 330px;
   background-color: #ffffff;

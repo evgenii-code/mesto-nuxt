@@ -81,6 +81,10 @@ export const state = () => ({
       src: '',
       title: '',
     },
+    errMessage: {
+      title: 'Ошибка',
+      message: '',
+    },
   },
 
   currentContent: {},
@@ -96,6 +100,10 @@ export const mutations = {
     state.currentContent.title = payload.title;
     return state.currentContent;
   },
+
+  setErrMessage(state, { message }) {
+    return (state.currentContent.message = message);
+  },
 };
 
 export const actions = {
@@ -110,7 +118,7 @@ export const actions = {
     return commit('setImage', { payload });
   },
 
-  sendData({ state, commit, dispatch }, { form, data }) {
+  sendData({ state, commit, dispatch, getters }, { form, data }) {
     const { apiURL } = this.$config;
     const { path, method } = form;
 
@@ -125,7 +133,25 @@ export const actions = {
           dispatch('cards/fetchCards', null, { root: true });
         return response;
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        let message = '';
+
+        if (error.response) {
+          message = error.response.data.message;
+        } else if (error.request) {
+          message = error.request;
+        } else {
+          message = error.message;
+        }
+
+        dispatch(
+          'form/updateCurrentContent',
+          { key: 'errMessage' },
+          { root: true }
+        );
+        commit('form/setErrMessage', { message }, { root: true });
+        console.dir(error);
+      });
   },
 };
 

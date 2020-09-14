@@ -36,7 +36,7 @@ export const actions = {
       .catch((error) => console.log(error));
   },
 
-  likeCard({ dispatch }, { cardId, method }) {
+  likeCard({ commit, dispatch }, { cardId, method }) {
     const { apiURL } = this.$config;
 
     return this.$axios(`${apiURL}/cards/${cardId}/likes`, {
@@ -47,7 +47,27 @@ export const actions = {
         console.log(response);
         dispatch('cards/fetchCards', null, { root: true });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        let message = '';
+
+        if (error.response) {
+          message = error.response.data.message;
+        } else if (error.request) {
+          message = error.request;
+        } else {
+          message = error.message;
+        }
+
+        if (!getters['popup/getPopupState'])
+          commit('popup/togglePopup', null, { root: true });
+        dispatch(
+          'form/updateCurrentContent',
+          { key: 'errMessage' },
+          { root: true }
+        );
+        commit('form/setErrMessage', { message }, { root: true });
+        console.dir(error);
+      });
   },
 };
 
