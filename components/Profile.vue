@@ -2,7 +2,7 @@
   <section class="profile">
     <div
       class="profile__avatar"
-      @click.prevent="checkPayload({ payload: 'editAvatar' })"
+      @click.prevent="defineContent({ key: 'editAvatar' })"
     >
       <img class="profile__img" :src="user.avatar" alt="User avatar" />
 
@@ -14,14 +14,14 @@
       <h2 class="profile__about">{{ user.about }}</h2>
       <Button
         class="profile__button profile__button_type_edit"
-        @btn-click="checkPayload({ payload: 'editProfile' })"
+        @btn-click="defineContent({ key: 'editProfile' })"
         >Редактировать профиль</Button
       >
     </div>
 
     <Button
       class="profile__button profile__button_type_add"
-      @btn-click="checkPayload({ payload: 'addCard' })"
+      @btn-click="defineContent({ key: 'addCard' })"
     ></Button>
   </section>
 </template>

@@ -77,23 +77,37 @@ export const state = () => ({
       '/users/me/avatar',
       [fields.avatar]
     ),
+    showImage: {
+      src: '',
+      title: '',
+    },
   },
 
-  currentContent: [],
+  currentContent: {},
 });
 
 export const mutations = {
   setState(state, { name, value }) {
     return (state[name] = value);
   },
+
+  setImage(state, { payload }) {
+    state.currentContent.src = payload.src;
+    state.currentContent.title = payload.title;
+    return state.currentContent;
+  },
 };
 
 export const actions = {
-  updateCurrentContent({ state, commit }, payload) {
+  updateCurrentContent({ state, commit }, { key }) {
     return commit('setState', {
       name: 'currentContent',
-      value: state.formContent[payload] || payload,
+      value: state.formContent[key],
     });
+  },
+
+  setImageSrc({ commit }, { payload }) {
+    return commit('setImage', { payload });
   },
 
   sendData({ state, commit, dispatch }, { form, data }) {

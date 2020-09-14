@@ -1,8 +1,12 @@
 <template>
   <div class="card">
-    <div class="card__picture" @click="checkPayload({ event: $event })">
+    <div
+      class="card__picture"
+      @click="defineContent({ key: 'showImage', event: $event })"
+    >
       <img :src="url" alt="Picture of nice place" class="card__image" />
     </div>
+
     <div class="card__description">
       <div class="card__title">{{ card.name }}</div>
 
@@ -69,7 +73,6 @@ export default {
 
       if (!this.isLiked()) {
         method = 'put';
-        console.log('here');
       }
 
       this.$store.dispatch('cards/likeCard', { cardId, method });

@@ -3,13 +3,14 @@
     <div class="popup__container">
       <button class="popup__close-button" @click.prevent="togglePopup"></button>
 
-      <Form
-        class="popup__form"
-        v-if="typeof getCurrentContent !== 'string'"
-        :currentContent="getCurrentContent"
+      <img
+        class="popup__image"
+        v-if="getCurrentContent.src"
+        :src="getCurrentContent.src"
+        :alt="getCurrentContent.title"
       />
 
-      <img class="popup__image" v-else :src="getCurrentContent" alt="Photo" />
+      <Form class="popup__form" v-else :currentContent="getCurrentContent" />
     </div>
   </div>
 </template>

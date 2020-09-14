@@ -4,10 +4,18 @@ export default {
       return this.$store.commit('popup/togglePopup');
     },
 
-    checkPayload({ payload, event }) {
-      if (payload) this.$store.dispatch('form/updateCurrentContent', payload);
-      if (event)
-        this.$store.dispatch('form/updateCurrentContent', event.target.src);
+    defineContent({ key, event }) {
+      this.$store.dispatch('form/updateCurrentContent', { key });
+
+      if (event) {
+        const payload = {
+          src: event.target.src,
+          title: event.target.closest('.card').querySelector('.card__title')
+            .textContent,
+        };
+
+        this.$store.dispatch('form/setImageSrc', { payload });
+      }
 
       this.togglePopup();
     },
