@@ -4,14 +4,14 @@
       <li class="menu__item">
         <Button
           class="menu__button"
-          @btn-click="checkPayload({ payload: 'signUp' })"
+          @btn-click="defineContent({ key: 'signUp' })"
           >Sign Up</Button
         >
       </li>
       <li class="menu__item">
         <Button
           class="menu__button"
-          @btn-click="checkPayload({ payload: 'signIn' })"
+          @btn-click="defineContent({ key: 'signIn' })"
           >Sign In</Button
         >
       </li>

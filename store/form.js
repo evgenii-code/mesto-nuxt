@@ -79,7 +79,7 @@ export const state = () => ({
     ),
   },
 
-  currentContent: [],
+  currentContent: {},
 });
 
 export const mutations = {
@@ -89,10 +89,17 @@ export const mutations = {
 };
 
 export const actions = {
-  updateCurrentContent({ state, commit }, payload) {
+  updateCurrentContent({ state, commit }, { key }) {
     return commit('setState', {
       name: 'currentContent',
-      value: state.formContent[payload] || payload,
+      value: state.formContent[key],
+    });
+  },
+
+  setImageSrc({ commit }, { payload }) {
+    return commit('setState', {
+      name: 'currentContent',
+      value: payload,
     });
   },
 
