@@ -77,6 +77,10 @@ export const state = () => ({
       '/users/me/avatar',
       [fields.avatar]
     ),
+    showImage: {
+      src: '',
+      title: '',
+    },
   },
 
   currentContent: {},
@@ -85,6 +89,12 @@ export const state = () => ({
 export const mutations = {
   setState(state, { name, value }) {
     return (state[name] = value);
+  },
+
+  setImage(state, { payload }) {
+    state.currentContent.src = payload.src;
+    state.currentContent.title = payload.title;
+    return state.currentContent;
   },
 };
 
@@ -97,10 +107,7 @@ export const actions = {
   },
 
   setImageSrc({ commit }, { payload }) {
-    return commit('setState', {
-      name: 'currentContent',
-      value: payload,
-    });
+    return commit('setImage', { payload });
   },
 
   sendData({ state, commit, dispatch }, { form, data }) {

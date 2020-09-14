@@ -5,9 +5,17 @@ export default {
     },
 
     defineContent({ key, event }) {
-      if (key) this.$store.dispatch('form/updateCurrentContent', { key });
-      if (event)
-        this.$store.dispatch('form/setImageSrc', { payload: event.target.src });
+      this.$store.dispatch('form/updateCurrentContent', { key });
+
+      if (event) {
+        const payload = {
+          src: event.target.src,
+          title: event.target.closest('.card').querySelector('.card__title')
+            .textContent,
+        };
+
+        this.$store.dispatch('form/setImageSrc', { payload });
+      }
 
       this.togglePopup();
     },
