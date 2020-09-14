@@ -4,14 +4,26 @@
       class="profile__avatar"
       @click.prevent="defineContent({ key: 'editAvatar' })"
     >
-      <img class="profile__img" :src="user.avatar" alt="User avatar" />
+      <img
+        class="profile__img"
+        v-if="user.avatar"
+        :src="user.avatar"
+        alt="User avatar"
+      />
+
+      <img
+        class="profile__img"
+        v-else
+        src="@/assets/images/avatar.svg"
+        alt="User avatar"
+      />
 
       <div class="profile__img-overlay"></div>
     </div>
 
     <div class="profile__user">
-      <h1 class="profile__name">{{ user.name }}</h1>
-      <h2 class="profile__about">{{ user.about }}</h2>
+      <h1 class="profile__name">{{ user.name || 'Гость' }}</h1>
+      <h2 class="profile__about" v-if="user.about">{{ user.about }}</h2>
       <Button
         class="profile__button profile__button_type_edit"
         @btn-click="defineContent({ key: 'editProfile' })"
@@ -35,12 +47,6 @@ export default {
     Container,
     Button,
   },
-
-  // computed: {
-  //   user() {
-  //     return this.$store.getters['profile/getUser'];
-  //   },
-  // },
 
   async fetch() {
     await this.$store.dispatch('profile/fetchUser');
@@ -114,7 +120,7 @@ export default {
 }
 
 .profile__name {
-  font-weight: 500;
+  font-weight: 900;
   font-size: 54px;
   line-height: 56px;
 }

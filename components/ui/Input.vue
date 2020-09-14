@@ -90,14 +90,6 @@ export default {
   width: 100%;
 }
 
-.input__field:valid {
-  border-bottom: 2px solid #35aa35;
-}
-
-.input__field:invalid {
-  border-bottom: 2px solid #aa3535;
-}
-
 .input__error {
   font-style: normal;
   font-weight: normal;
