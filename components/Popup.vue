@@ -62,9 +62,11 @@ export default {
 }
 
 .popup__image {
+  max-height: 90vh;
   max-width: 90vw;
-  max-height: 90vw;
   object-fit: cover;
+  height: auto;
+  width: 100vw;
 }
 
 .popup__close-button {
