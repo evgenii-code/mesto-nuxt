@@ -52,7 +52,7 @@ export const state = () => ({
   isShown: false,
 
   popupContent: {
-    addCard: new PopupContent('Добавить карточку', 'post', '/cards', [
+    addCard: new PopupContent('Добавить фото', 'post', '/cards', [
       fields.name,
       fields.link,
     ]),

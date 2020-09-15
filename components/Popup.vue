@@ -53,11 +53,12 @@ export default {
 
 .popup__content {
   width: 430px;
-  min-height: 330px;
+  /* min-height: 330px; */
   background-color: #ffffff;
   border-radius: 10px;
   padding: 36px;
   display: flex;
+  justify-content: flex-start;
 }
 
 .popup__image {
@@ -90,10 +91,16 @@ export default {
     display: flex;
   }
 
+  .popup__content {
+    padding: 20px;
+  }
+
   .popup__close-button {
     right: 20px;
     top: 20px;
-    border: 1px solid red;
+    width: 20px;
+    height: 20px;
+    filter: invert(100%);
   }
 }
 </style>

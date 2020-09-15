@@ -76,8 +76,12 @@ export default {
   color: #000000;
 }
 
-.form__input {
-  margin-bottom: 20px;
+.form__input:first-of-type {
+  margin-top: 20px;
+}
+
+.form__input:last-of-type {
+  margin-bottom: 10px;
 }
 
 .form__button {

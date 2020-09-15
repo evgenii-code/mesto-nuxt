@@ -96,6 +96,8 @@ export default {
   font-size: 12px;
   line-height: 15px;
 
+  min-height: 30px;
+
   color: #ff0000;
 }
 </style>
