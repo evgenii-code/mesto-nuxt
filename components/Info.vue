@@ -36,6 +36,10 @@ export default {
   justify-content: space-between;
 }
 
+.info_text {
+  font-size: 13px;
+}
+
 .info__button {
   width: 100%;
   height: 50px;
