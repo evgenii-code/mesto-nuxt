@@ -114,6 +114,8 @@ export const mutations = {
 
 export const actions = {
   togglePopup({ commit }) {
+    document.body.classList.toggle('body_scroll-disabled');
+
     return commit('togglePopup');
   },
 
@@ -136,7 +138,7 @@ export const actions = {
       withCredentials: true,
     })
       .then((response) => {
-        commit('popup/togglePopup', null, { root: true });
+        dispatch('popup/togglePopup', null, { root: true });
 
         if (path.includes('/users') || path.includes('/signin'))
           dispatch('profile/fetchUser', null, { root: true });

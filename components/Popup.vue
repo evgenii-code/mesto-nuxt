@@ -100,7 +100,7 @@ export default {
     top: 20px;
     width: 20px;
     height: 20px;
-    filter: invert(100%);
+    filter: invert(100%) drop-shadow(0 0 3px rgba(255, 255, 255, 0.8));
   }
 }
 </style>

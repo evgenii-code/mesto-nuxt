@@ -59,7 +59,7 @@ export const actions = {
         }
 
         if (!getters['popup/getPopupState'])
-          commit('popup/togglePopup', null, { root: true });
+          dispatch('popup/togglePopup', null, { root: true });
         dispatch(
           'popup/updateCurrentPopupContent',
           { key: 'errMessage' },
