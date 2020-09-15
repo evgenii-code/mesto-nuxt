@@ -55,7 +55,7 @@ export default {
         return result;
       }, {});
 
-      this.$store.dispatch('form/sendData', {
+      this.$store.dispatch('popup/sendData', {
         form: this.currentContent,
         data,
       });

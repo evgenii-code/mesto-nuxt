@@ -33,7 +33,7 @@ export default {
 
   computed: {
     getCurrentContent() {
-      return this.$store.getters['form/getCurrentContent'];
+      return this.$store.getters['popup/getCurrentPopupContent'];
     },
   },
 };

@@ -1,11 +1,11 @@
 export default {
   methods: {
     togglePopup() {
-      return this.$store.commit('popup/togglePopup');
+      return this.$store.dispatch('popup/togglePopup');
     },
 
     defineContent({ key, event }) {
-      this.$store.dispatch('form/updateCurrentContent', { key });
+      this.$store.dispatch('popup/updateCurrentPopupContent', { key });
 
       if (event) {
         const payload = {
@@ -14,7 +14,7 @@ export default {
             .textContent,
         };
 
-        this.$store.dispatch('form/setImageSrc', { payload });
+        this.$store.dispatch('popup/setImageSrc', { payload });
       }
 
       this.togglePopup();
