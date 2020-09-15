@@ -1,7 +1,7 @@
 <template>
   <div class="default">
     <Header />
-    <Nuxt />
+    <Nuxt class="default__main default__main_scroll-disabled" />
     <Overlay v-if="popupState" />
     <Popup v-if="popupState" />
   </div>
@@ -55,5 +55,12 @@ html {
   background-color: #000000;
   position: relative;
   min-height: 100vh;
+}
+
+.default__main {
+}
+
+.default__main_scroll-disabled {
+  overflow: hidden;
 }
 </style>

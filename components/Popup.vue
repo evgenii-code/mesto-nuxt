@@ -33,7 +33,7 @@ export default {
 
   computed: {
     getCurrentContent() {
-      return this.$store.getters['form/getCurrentContent'];
+      return this.$store.getters['popup/getCurrentPopupContent'];
     },
   },
 };
@@ -53,17 +53,20 @@ export default {
 
 .popup__content {
   width: 430px;
-  min-height: 330px;
+  min-height: 250px;
   background-color: #ffffff;
   border-radius: 10px;
   padding: 36px;
   display: flex;
+  /* justify-content: flex-start; */
 }
 
 .popup__image {
+  max-height: 90vh;
   max-width: 90vw;
-  max-height: 90vw;
   object-fit: cover;
+  height: auto;
+  width: 100vw;
 }
 
 .popup__close-button {
@@ -90,10 +93,16 @@ export default {
     display: flex;
   }
 
+  .popup__content {
+    padding: 20px;
+  }
+
   .popup__close-button {
     right: 20px;
     top: 20px;
-    border: 1px solid red;
+    width: 20px;
+    height: 20px;
+    filter: invert(100%) drop-shadow(0 0 3px rgba(255, 255, 255, 0.8));
   }
 }
 </style>
