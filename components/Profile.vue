@@ -26,6 +26,7 @@
       <h2 class="profile__about" v-if="user.about">{{ user.about }}</h2>
       <Button
         class="profile__button profile__button_type_edit"
+        v-if="user.name"
         @btn-click="defineContent({ key: 'editProfile' })"
         >Редактировать профиль</Button
       >
@@ -33,6 +34,7 @@
 
     <Button
       class="profile__button profile__button_type_add"
+      v-if="user.name"
       @btn-click="defineContent({ key: 'addCard' })"
     ></Button>
   </section>
@@ -180,6 +182,7 @@ export default {
 
   .profile__name {
     text-align: center;
+    font-size: 50px;
   }
 }
 </style>
