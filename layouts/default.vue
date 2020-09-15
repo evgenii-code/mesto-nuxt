@@ -1,9 +1,10 @@
 <template>
   <div class="default">
-    <Header />
-    <Nuxt class="default__main default__main_scroll-disabled" />
-    <Overlay v-if="popupState" />
-    <Popup v-if="popupState" />
+    <Header class="default__header" />
+    <Nuxt class="default__main" />
+    <Overlay v-if="popupState" class="default__overlay" />
+    <Popup v-if="popupState" class="default__popup" />
+    <Footer class="default__footer" />
   </div>
 </template>
 
@@ -13,6 +14,7 @@ import global from '@/mixins/global';
 import Overlay from '@/components/ui/Overlay';
 import Popup from '@/components/Popup';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 Vue.mixin(global);
 
@@ -21,6 +23,7 @@ export default {
     Overlay,
     Popup,
     Header,
+    Footer,
   },
 
   computed: {
@@ -55,12 +58,18 @@ html {
   background-color: #000000;
   position: relative;
   min-height: 100vh;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .default__main {
+  margin-bottom: auto;
 }
 
-.default__main_scroll-disabled {
-  overflow: hidden;
+.default__footer {
+  margin-top: 50px;
+  justify-self: flex-end;
 }
 </style>
