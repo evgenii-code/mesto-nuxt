@@ -10,14 +10,15 @@
   "keywords": [
     "vue",
     "nuxt",
-    "ssr"
+    "spa"
   ],
   "description": "Simple instagram-like app",
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "deploy": "scp -r ./dist/* evgenii-code@84.201.141.83:/home/evgenii-code/mesto-frontend"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.0",
