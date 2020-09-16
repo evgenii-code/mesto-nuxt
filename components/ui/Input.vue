@@ -15,7 +15,14 @@
           class="input__button"
           v-if="type === 'password'"
           @click.prevent="switchVisibility"
-        ></button>
+        >
+          <fa
+            class="input__icon"
+            :icon="['far', 'eye']"
+            v-if="fieldType === 'password'"
+          />
+          <fa class="input__icon" :icon="['far', 'eye-slash']" v-else />
+        </button>
       </div>
 
       <p class="input__error">{{ errors[0] }}</p>
@@ -115,8 +122,11 @@ export default {
   top: 50%;
   right: 0;
   transform: translate(0, -50%);
-  width: 20px;
-  height: 20px;
+  cursor: pointer;
+  padding: 0;
+  background: unset;
+  border: none;
+  font-size: 14px;
 }
 
 .input__error {
