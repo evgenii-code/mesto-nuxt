@@ -46,6 +46,10 @@ const fields = {
     placeholder: 'Ссылка на картинку',
     minlength: 2,
   },
+  file: {
+    name: 'file',
+    type: 'file',
+  },
 };
 
 export const state = () => ({
@@ -54,7 +58,7 @@ export const state = () => ({
   popupContent: {
     addCard: new PopupContent('Добавить фото', 'post', '/cards', [
       fields.name,
-      fields.link,
+      fields.file,
     ]),
     signUp: new PopupContent('Регистрация', 'post', '/signup', [
       fields.email,
@@ -90,6 +94,7 @@ export const state = () => ({
   },
 
   currentPopupContent: {},
+  file: {},
 });
 
 export const mutations = {
@@ -119,6 +124,13 @@ export const actions = {
     return commit('togglePopup');
   },
 
+  setFile({ commit }, { file }) {
+    return commit('setState', {
+      name: 'file',
+      value: file,
+    });
+  },
+
   updateCurrentPopupContent({ state, commit }, { key }) {
     return commit('setState', {
       name: 'currentPopupContent',
@@ -132,11 +144,19 @@ export const actions = {
 
   sendData({ state, commit, dispatch, getters }, { form, data }) {
     const { apiURL } = this.$config;
-    const { path, method } = form;
+    const { path, method, inputs } = form;
+    const formData = new FormData();
+    const axiosConfig = { withCredentials: true };
+    let dataToSend = data;
 
-    return this.$axios[method](`${apiURL}${path}`, data, {
-      withCredentials: true,
-    })
+    if (inputs.find((item) => item.type === 'file')) {
+      formData.append('file', state.file);
+      formData.append('name', data.name);
+      dataToSend = formData;
+      axiosConfig.headers = { 'Content-Type': 'multipart/form-data' };
+    }
+
+    return this.$axios[method](`${apiURL}${path}`, dataToSend, axiosConfig)
       .then((response) => {
         dispatch('popup/togglePopup', null, { root: true });
 
