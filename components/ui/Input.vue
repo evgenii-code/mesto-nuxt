@@ -7,8 +7,10 @@
           :name="name"
           v-model.trim="data"
           :type="type === 'password' ? fieldType : type"
+          :ref="type"
           :placeholder="placeholder"
           v-bind="minmax"
+          @change="type === 'file' ? handleFileUpload() : ''"
         />
 
         <button
@@ -43,6 +45,7 @@ export default {
       data: '',
       minmax: {},
       fieldType: 'password',
+      file: '',
     };
   },
 
@@ -60,6 +63,11 @@ export default {
   methods: {
     switchVisibility() {
       this.fieldType = this.fieldType === 'password' ? 'text' : 'password';
+    },
+
+    handleFileUpload() {
+      const file = this.$refs.file.files[0];
+      this.$store.dispatch('popup/setFile', { file });
     },
   },
 
@@ -80,7 +88,9 @@ export default {
       default: 'text',
       required: true,
       validator: function (value) {
-        return ['text', 'email', 'password', 'url'].indexOf(value) !== -1;
+        return (
+          ['text', 'email', 'password', 'url', 'file'].indexOf(value) !== -1
+        );
       },
     },
 
