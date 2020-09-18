@@ -36,7 +36,7 @@ const fields = {
   },
   avatar: {
     name: 'avatar',
-    type: 'url',
+    type: 'file',
     placeholder: 'Ссылка на картинку',
     minlength: 2,
   },
@@ -65,7 +65,7 @@ export const state = () => ({
       fields.password,
       fields.name,
       fields.about,
-      fields.avatar,
+      fields.file,
     ]),
     signIn: new PopupContent('Вход', 'post', '/signin', [
       fields.email,
@@ -81,7 +81,7 @@ export const state = () => ({
       'Изменить аватар',
       'patch',
       '/users/me/avatar',
-      [fields.avatar]
+      [fields.file]
     ),
     showImage: {
       src: '',
@@ -151,8 +151,15 @@ export const actions = {
 
     if (inputs.find((item) => item.type === 'file')) {
       formData.append('file', state.file);
-      formData.append('name', data.name);
+
+      for (let key in data) {
+        if (key !== 'file') {
+          formData.append(key, data[key]);
+        }
+      }
+
       dataToSend = formData;
+
       axiosConfig.headers = { 'Content-Type': 'multipart/form-data' };
     }
 
